@@ -1,4 +1,4 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2022 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
@@ -12,13 +12,13 @@
 #include <test/state/state.hpp>
 #include <array>
 
-using namespace zvmone;
-using namespace zvmone::state;
+using namespace qrvmone;
+using namespace qrvmone::state;
 using namespace intx;
 
 TEST(state_mpt_hash, empty)
 {
-    EXPECT_EQ(mpt_hash(std::unordered_map<zvmone::address, Account>()), emptyMPTHash);
+    EXPECT_EQ(mpt_hash(std::unordered_map<qrvmone::address, Account>()), emptyMPTHash);
 }
 
 TEST(state_mpt_hash, single_account_v1)
@@ -112,8 +112,8 @@ TEST(state_mpt_hash, one_transactions)
 TEST(state_mpt_hash, eip1559_receipt_three_logs_no_logs)
 {
     TransactionReceipt receipt0{};
-    receipt0.kind = zvmone::state::Transaction::Kind::eip1559;
-    receipt0.status = ZVMC_SUCCESS;
+    receipt0.kind = qrvmone::state::Transaction::Kind::eip1559;
+    receipt0.status = QRVMC_SUCCESS;
     receipt0.gas_used = 0x24522;
 
     Log l0;
@@ -143,8 +143,8 @@ TEST(state_mpt_hash, eip1559_receipt_three_logs_no_logs)
     receipt0.logs_bloom_filter = compute_bloom_filter(receipt0.logs);
 
     TransactionReceipt receipt1{};
-    receipt1.kind = zvmone::state::Transaction::Kind::eip1559;
-    receipt1.status = ZVMC_SUCCESS;
+    receipt1.kind = qrvmone::state::Transaction::Kind::eip1559;
+    receipt1.status = QRVMC_SUCCESS;
     receipt1.gas_used = 0x2cd9b;
     receipt1.logs_bloom_filter = compute_bloom_filter(receipt1.logs);
 

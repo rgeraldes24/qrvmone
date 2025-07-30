@@ -1,12 +1,12 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2019-2020 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include <intx/intx.hpp>
 #include <test/utils/utils.hpp>
-#include <zvmc/zvmc.hpp>
-#include <zvmone/instructions_traits.hpp>
+#include <qrvmc/qrvmc.hpp>
+#include <qrvmone/instructions_traits.hpp>
 #include <algorithm>
 #include <ostream>
 #include <stdexcept>
@@ -14,13 +14,13 @@
 struct bytecode;
 
 inline bytecode push(uint64_t n);
-inline bytecode push(zvmc::address addr);
-inline bytecode push(zvmc::bytes32 bs);
+inline bytecode push(qrvmc::address addr);
+inline bytecode push(qrvmc::bytes32 bs);
 
-using enum zvmone::Opcode;
-using zvmone::Opcode;
+using enum qrvmone::Opcode;
+using qrvmone::Opcode;
 
-// TODO: Pull bytecode in zvmone namespace
+// TODO: Pull bytecode in qrvmone namespace
 struct bytecode : bytes
 {
     bytecode() noexcept = default;
@@ -38,9 +38,9 @@ struct bytecode : bytes
 
     bytecode(uint64_t n) : bytes{push(n)} {}
 
-    bytecode(zvmc::address addr) : bytes{push(addr)} {}
+    bytecode(qrvmc::address addr) : bytes{push(addr)} {}
 
-    bytecode(zvmc::bytes32 bs) : bytes{push(bs)} {}
+    bytecode(qrvmc::bytes32 bs) : bytes{push(bs)} {}
 
     operator bytes_view() const noexcept { return {data(), size()}; }
 };
@@ -137,13 +137,13 @@ inline bytecode push(uint64_t n)
     return push(data);
 }
 
-inline bytecode push(zvmc::bytes32 bs)
+inline bytecode push(qrvmc::bytes32 bs)
 {
     bytes_view data{bs.bytes, sizeof(bs.bytes)};
     return push(data.substr(std::min(data.find_first_not_of(uint8_t{0}), size_t{31})));
 }
 
-inline bytecode push(zvmc::address addr)
+inline bytecode push(qrvmc::address addr)
 {
     return push({std::data(addr.bytes), std::size(addr.bytes)});
 }
@@ -398,7 +398,7 @@ inline std::string decode(bytes_view bytecode)
     for (auto it = bytecode.begin(); it != bytecode.end(); ++it)
     {
         const auto opcode = *it;
-        if (const auto name = zvmone::instr::traits[opcode].name; name)
+        if (const auto name = qrvmone::instr::traits[opcode].name; name)
         {
             s += std::string{" + OP_"} + name;
 

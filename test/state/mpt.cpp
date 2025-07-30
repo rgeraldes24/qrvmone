@@ -1,4 +1,4 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2022 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cassert>
 
-namespace zvmone::state
+namespace qrvmone::state
 {
 namespace
 {
@@ -280,4 +280,4 @@ void MPT::insert(bytes_view key, bytes&& value)
     return m_root->hash();
 }
 
-}  // namespace zvmone::state
+}  // namespace qrvmone::state

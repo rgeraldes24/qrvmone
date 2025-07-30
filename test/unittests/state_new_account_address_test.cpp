@@ -1,13 +1,13 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2023 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
 #include <gtest/gtest.h>
 #include <test/state/host.hpp>
 
-using namespace zvmc;
-using namespace zvmc::literals;
-inline constexpr auto addr = zvmone::state::compute_new_account_address;
+using namespace qrvmc;
+using namespace qrvmc::literals;
+inline constexpr auto addr = qrvmone::state::compute_new_account_address;
 
 inline constexpr uint64_t nonces[] = {0, 1, 0x80, 0xffffffffffffffff};
 inline constexpr address senders[] = {

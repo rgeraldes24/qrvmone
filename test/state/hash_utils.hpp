@@ -1,21 +1,21 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2022 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
 #include <ethash/keccak.hpp>
-#include <zvmc/hex.hpp>
-#include <zvmc/zvmc.hpp>
+#include <qrvmc/hex.hpp>
+#include <qrvmc/qrvmc.hpp>
 #include <cstring>
 
-namespace zvmone
+namespace qrvmone
 {
-using zvmc::address;
-using zvmc::bytes;
-using zvmc::bytes32;
-using zvmc::bytes_view;
-using namespace zvmc::literals;
+using qrvmc::address;
+using qrvmc::bytes;
+using qrvmc::bytes32;
+using qrvmc::bytes_view;
+using namespace qrvmc::literals;
 
 /// Default type for 256-bit hash.
 ///
@@ -30,7 +30,7 @@ inline hash256 keccak256(bytes_view data) noexcept
     std::memcpy(h.bytes, eh.bytes, sizeof(h));  // TODO: Use std::bit_cast.
     return h;
 }
-}  // namespace zvmone
+}  // namespace qrvmone
 
-std::ostream& operator<<(std::ostream& out, const zvmone::address& a);
-std::ostream& operator<<(std::ostream& out, const zvmone::bytes32& b);
+std::ostream& operator<<(std::ostream& out, const qrvmone::address& a);
+std::ostream& operator<<(std::ostream& out, const qrvmone::bytes32& b);

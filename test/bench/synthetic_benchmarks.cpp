@@ -1,19 +1,19 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2020 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
 #include "synthetic_benchmarks.hpp"
 #include "helpers.hpp"
 #include "test/utils/bytecode.hpp"
-#include <zvmone/instructions_traits.hpp>
+#include <qrvmone/instructions_traits.hpp>
 
 using namespace benchmark;
 
-namespace zvmone::test
+namespace qrvmone::test
 {
 namespace
 {
-/// Stack limit inside the ZVM benchmark loop (one stack item is used for the loop counter).
+/// Stack limit inside the QRVM benchmark loop (one stack item is used for the loop counter).
 constexpr auto stack_limit = 1023;
 
 enum class Mode
@@ -22,7 +22,7 @@ enum class Mode
     full_stack = 1,  ///< The code fills the stack up to its limit.
 };
 
-/// The instruction grouping by ZVM stack requirements.
+/// The instruction grouping by QRVM stack requirements.
 enum class InstructionCategory : char
 {
     nop = 'n',     ///< No-op instruction.
@@ -75,7 +75,7 @@ std::string to_string(const CodeParams& params)
            std::to_string(static_cast<int>(params.mode));
 }
 
-/// Generates the ZVM benchmark loop inner code for the given opcode and "mode".
+/// Generates the QRVM benchmark loop inner code for the given opcode and "mode".
 bytecode generate_loop_inner_code(CodeParams params)
 {
     const auto [opcode, mode] = params;
@@ -257,9 +257,9 @@ void register_synthetic_benchmarks()
     for (auto& [vm_name, vm] : registered_vms)
     {
         RegisterBenchmark(std::string{vm_name} + "/total/synth/loop_v1",
-            [&vm_ = vm](State& state) { bench_zvmc_execute(state, vm_, generate_loop_v1({})); });
+            [&vm_ = vm](State& state) { bench_qrvmc_execute(state, vm_, generate_loop_v1({})); });
         RegisterBenchmark(std::string{vm_name} + "/total/synth/loop_v2",
-            [&vm_ = vm](State& state) { bench_zvmc_execute(state, vm_, generate_loop_v2({})); });
+            [&vm_ = vm](State& state) { bench_qrvmc_execute(state, vm_, generate_loop_v2({})); });
     }
 
     for (const auto params : params_list)
@@ -268,9 +268,9 @@ void register_synthetic_benchmarks()
         {
             RegisterBenchmark(std::string{vm_name} + "/total/synth/" + to_string(params),
                 [&vm_ = vm, params](
-                    State& state) { bench_zvmc_execute(state, vm_, generate_code(params)); })
+                    State& state) { bench_qrvmc_execute(state, vm_, generate_code(params)); })
                 ->Unit(kMicrosecond);
         }
     }
 }
-}  // namespace zvmone::test
+}  // namespace qrvmone::test

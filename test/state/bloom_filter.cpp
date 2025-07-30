@@ -1,11 +1,11 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2023 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
 #include "bloom_filter.hpp"
 #include "state.hpp"
 
-namespace zvmone::state
+namespace qrvmone::state
 {
 
 namespace
@@ -54,4 +54,4 @@ BloomFilter compute_bloom_filter(std::span<const TransactionReceipt> receipts) n
     return res;
 }
 
-}  // namespace zvmone::state
+}  // namespace qrvmone::state

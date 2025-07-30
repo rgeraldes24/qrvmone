@@ -1,21 +1,21 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2018-2019 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
-#ifndef ZVMONE_H
-#define ZVMONE_H
+#ifndef QRVMONE_H
+#define QRVMONE_H
 
-#include <zvmc/utils.h>
-#include <zvmc/zvmc.h>
+#include <qrvmc/utils.h>
+#include <qrvmc/qrvmc.h>
 
 #if __cplusplus
 extern "C" {
 #endif
 
-ZVMC_EXPORT struct zvmc_vm* zvmc_create_zvmone(void) ZVMC_NOEXCEPT;
+QRVMC_EXPORT struct qrvmc_vm* qrvmc_create_qrvmone(void) QRVMC_NOEXCEPT;
 
 #if __cplusplus
 }
 #endif
 
-#endif  // ZVMONE_H
+#endif  // QRVMONE_H

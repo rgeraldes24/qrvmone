@@ -1,4 +1,4 @@
 [submodule "qrvmc"]
 	path = qrvmc
 	url = https://github.com/rgeraldes24/qrvmc
-	branch = feature/qrl-naming
+	branch = cleanup/precompile-2
